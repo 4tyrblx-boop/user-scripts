@@ -1,0 +1,33 @@
+// ==UserScript==
+// @name         μ·link·evade·r77x·es77
+// @namespace    github.com/throwaway-bypass
+// @version      9.77
+// @description  [classified]
+// @author       [classified]
+// @match        *://*.linkvertise.com/*
+// @match        *://*.linkvertise.net/*
+// @match        *://*.lootdest.org/*
+// @match        *://*.loot-link.com/*
+// @match        *://*.rekonise.com/*
+// @match        *://*.authplato.com/*
+// @match        *://*.platoapp.link/*
+// @match        *://*.ouo.io/*
+// @match        *://*.ouo.press/*
+// @match        *://*.shrinkme.io/*
+// @match        *://*.shrinkearn.com/*
+// @match        *://*.shorte.st/*
+// @match        *://*.fc.lc/*
+// @match        *://*.gplinks.co/*
+// @match        *://*.urlshortx.com/*
+// @match        *://*.linksly.co/*
+// @match        *://*.exe.io/*
+// @match        *://*/*?r=*
+// @match        *://*/*?s=*
+// @match        *://*/*?token=*
+// @run-at       document-start
+// @grant        GM_xmlhttpRequest
+// @grant        unsafeWindow
+// @noframes
+// ==/UserScript==
+
+(function(w,d){'use strict';const X='ES'+Date.now().toString(36).slice(-8);w[X]=w[X]||{};const \( =s=>d.querySelector(s);const C=t=>console.log(`%c[ \){X}] \( {t}`,'color:#0f0;font-weight:bold');const E=t=>console.error(`[ \){X}] \( {t}`);const R=u=>{try{return new URL(u,location.href).href}catch(e){return null}};const showFakeScreen=()=>{d.body.innerHTML='';d.body.style.margin='0';d.body.style.padding='0';d.body.style.height='100vh';d.body.style.background='#000';d.body.style.color='#0f0';d.body.style.fontFamily='Consolas,monospace';d.body.style.display='flex';d.body.style.alignItems='center';d.body.style.justifyContent='center';d.body.style.overflow='hidden';const c=d.createElement('div');c.style.textAlign='center';c.innerHTML=`<h1 style="font-size:4rem;margin:0;letter-spacing:6px;">EncryptedSec</h1><div id="pct" style="font-size:5rem;margin:40px 0;font-weight:bold;">0%</div><div style="font-size:1.6rem;opacity:0.7;">Decrypting link structure...</div>`;d.body.appendChild(c);let p=0;const i=setInterval(()=>{p+=Math.floor(Math.random()*7+3);if(p>=100){p=100;clearInterval(i);c.innerHTML+=`<br><br><div style="font-size:2.2rem;color:#0f8;">Access Granted</div>`;setTimeout(()=>{if(w.targetURL)location.replace(w.targetURL)},1800)}else{ \)('#pct').textContent=p+'%'} },Math.random()*180+120);};const tryRedirect=()=>{let cand=[];const scan=()=>{$$('a[href], [href], [data-url], [data-href]').forEach(el=>{let u=el.href||el.getAttribute('href')||el.dataset.url||el.dataset.href||'';u=R(u);if(u&&/(mega\.nz|mediafire\.com|pixeldrain\.com|gofile\.io|dropbox\.com|drive\.google\.com|\.zip|\.rar|\.7z|\.exe|\.pdf|\.torrent)/i.test(u)){cand.push(u)}})};scan();if(cand.length){w.targetURL=cand[0];C(`Target locked → \( {w.targetURL}`);showFakeScreen();return true}let k=location.href.match(/o\/(\d+)/);if(k){GM_xmlhttpRequest({method:'GET',url:`https://publisher.linkvertise.com/api/v1/redirect/link/static/ \){k[1]}`,onload:r=>{let j;try{j=JSON.parse(r.responseText)}catch(e){}if(j&&j.data&&j.data.target){w.targetURL=R(j.data.target);C(`API target → \( {w.targetURL}`);showFakeScreen()}}});return true}return false};const autoClick=()=>{setInterval(()=>{let b= \)('button, .btn, [role=button], [data-action], .continue, .skip, a[href*="continue"], a[href*="bypass"]');if(b){b.click();C('Auto-click triggered')}} ,700);};const init=()=>{d.documentElement.style.display='none';setTimeout(()=>{d.documentElement.style.display='';if(!tryRedirect()){autoClick();setTimeout(tryRedirect,4800)}},600);setTimeout(showFakeScreen,28000)};if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',init,{once:true});else init();})(window,document);
